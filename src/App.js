@@ -5,63 +5,87 @@ import Right from './components/Right';
 import { Grid } from '@mui/material';
 import { blue, red } from '@mui/material/colors';
 function App() {
-
+  var time = new Date();
+  time=time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
   const[contacts,setContacts]=useState([
     {
       contactName:"rohan",
-      mobileNumber:9889898989,
-      messages:["hii","how are you"]
+      mobileNo:9999999999,
+      profile:"./rohan.jpg",
+      messages:[{msg:"hii",time:time}]
     },
     {
       contactName:"shrikant",
-      messages:["hii","how are you"]
+      mobileNo:8888888888,
+      profile:"./ashish.jpg",
+      messages:[{msg:"hii",time:time}]
     },
     {
       contactName:"Ashish",
-      messages:["hii","how are you"]
+      mobileNo:7777777777,
+      profile:"./shriknt.jpg",
+      messages:[{msg:"bye",time:time}]
     },
     {
-      contactName:"rohan",
-      messages:["hii","how are you"]
+      contactName:"bhargav",
+      mobileNo:6666666666,
+      profile:"./rainbow.jpg",
+      messages:[{msg:"hii",time:time}]
     },
     {
-      contactName:"shrikant",
-      messages:["hii","how are you"]
+      contactName:"prasenjit",
+      mobileNo:5555555555,
+      profile:"./bhargav.jpg",
+      messages:[{msg:"hii",time:time}]
     },
     {
-      contactName:"Ashish",
-      messages:["hii","how are you"]
+      contactName:"Harshal",
+      mobileNo:4444444444,
+      profile:"./harshal1.jpg",
+      messages:[{msg:"hii",time:time}]
     },{
-      contactName:"rohan",
-      messages:["h","how are youuuuuuuuuuuuuuuuuuuuuuu"]
+      contactName:"hemant",
+      mobileNo:3333333333,
+      profile:"./bhargav.jpg",
+      messages:[{msg:"hii",time:time}]
     },
     {
-      contactName:"shrikant",
-      messages:["hii","how are youuuuuuuuuuuuuu"]
-    },
-    {
-      contactName:"Ashish",
-      messages:["hii","how are you"]
+      contactName:"om",
+      mobileNo:22222222222,
+      profile:"./om.jpg",
+      messages:[{msg:"hii",time:time}]
     }
   ])
-   
-  const[selectedContact,setSelectedContact]=useState({
-    contactName:"Ashish",
-    messages:["hii","how are you"]
-  })
+  
+  function onSendMsg(msgObj){
+    let tempArr=JSON.parse(JSON.stringify(contacts))
+    let msgArr=selectedContact.messages
+    msgArr.push(msgObj)
+    var index = tempArr.findIndex(contact => contact.mobileNo === selectedContact.mobileNo);
+    tempArr[index].messages=msgArr
+
+    setContacts(tempArr)
+    console.log("ccccccccccccc",contacts);
+  }
+
+  const[selectedContact,setSelectedContact]=useState("")
   function selectContact(contact)
   {
     console.log("hjhjkhjk",contact);
     setSelectedContact(contact)
   }
-
+  function onBackButton()
+  {
+    setSelectedContact("")
+  }
+  
   return (
-   <Grid container direction={'row'} margin={"20px"} height={"90vh"}>
-    <Grid item lg={3.4} xs={2}>
-    <Left contacts={contacts} selectContact={selectContact}/>
+   <Grid container direction={'row'} height={"100%"} >
+    <Grid item lg={3.5} xs={12} sm={5} md={4} xl={4} sx={{display:{xs:(selectedContact)? 'none':'block',sm:'block'}}}>
+    <Left contacts={contacts} selectContact={selectContact} selectedContact={selectedContact}/>
     </Grid>
-    <Grid item lg={8.3}  xs={10} >
-    <Right selectedContact={selectedContact}/>
+    <Grid item lg={8.5} xs={12} sm={7} md={8} xl={8}  sx={{display:{xs:(selectedContact)? 'block':'none',sm:'block'}}} >
+    <Right selectedContact={selectedContact} onSendMsg={onSendMsg} onBackButton={onBackButton}/>
     </Grid>
    </Grid>
   );

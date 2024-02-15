@@ -1,37 +1,42 @@
 
 import React from 'react'
-import { Box,Divider,List,Drawer} from '@mui/material'
+import { Box,Divider,List,Drawer, Stack} from '@mui/material'
 import ListItem from '@mui/material/ListItem';
 
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import Right from './Right';
 
 const Person = (props) =>{
+    
+  let color1;
+  if (props.person.mobileNo === props.selectedContact.mobileNo) {
+    color1 = "#F0F2F5"
+  } else {
+    color1 = 'white'
+  }
+  let lastText=(props.person.messages.length)-1
+  let msg=props.person.messages[lastText].msg
+  let msglen=msg.length
+  
      return(
      <> 
-      <ListItem alignItems="flex-start" onClick={()=>props.selectContact(props.person)}>
+      <ListItem alignItems="flex-start" onClick={()=>props.selectContact(props.person)} sx={{backgroundColor:color1,cursor:"pointer"}} >
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" sx={{height:"50px",width:"50px"}}/>
+          <Avatar alt="Remy Sharp" src={props.person.profile} sx={{height:"50px",width:"50px"}}/>
         </ListItemAvatar>
         <ListItemText
-         sx={{ml:2}}
-          primary={props.person.contactName}
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline'}}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                Ali Connors
-              </Typography>
-             
-            </React.Fragment>
-          }
-        />
+         sx={{ml:2,mt:2}}
+         >
+         <Stack direction={'row'} justifyContent={'space-between'}>
+         <Typography>{props.person.contactName}</Typography>
+         <Typography sx={{fontSize:"12px"}}>{props.person.messages[lastText].time}</Typography>
+         </Stack>
+         
+         <Typography>{msglen < 35 ? msg : msg.slice(0,35) + "..."}</Typography>
+         </ListItemText>
       </ListItem>
       <Divider  variant="inset" component="li"/>
       </>
@@ -40,19 +45,25 @@ const Person = (props) =>{
      )
 }
 const ContactList = (props) => {
+  let searchText=props.searchText
+  let clonedArray = [...props.contacts]
+
   function displayList()
   {
-    console.log("ccccc",props.contacts);
+    if (searchText !== undefined) {
+      clonedArray = clonedArray.filter(user => user.contactName.includes(searchText));
+    }
+    
     let contactArr=[]
-     for(let i=0;i<props.contacts.length;i++)
+     for(let i=0;i<clonedArray.length;i++)
      {
-       contactArr.push(<Person person={props.contacts[i]} selectContact={props.selectContact}/>)
+       contactArr.push(<Person person={clonedArray[i]} selectContact={props.selectContact} selectedContact={props.selectedContact} key={clonedArray[i].mobileNo}/>)
      }
      return contactArr
   }
   return (
     
-    <Box sx={{height:"78vh",overflow:'scroll', overflowX:'hidden',scrollbarWidth:"thin"}} >
+    <Box sx={{height:"80vh",overflow:'scroll', overflowX:'hidden',scrollbarWidth:"thin"}} >
     
      <List sx={{ width: '100%',bgcolor: 'background.paper' }}>
         {
@@ -66,3 +77,4 @@ const ContactList = (props) => {
 }
 
 export default ContactList
+
