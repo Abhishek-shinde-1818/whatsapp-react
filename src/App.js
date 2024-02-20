@@ -6,6 +6,7 @@ import { Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 function App() {
+  let dummy="ghgjgj"
   let arr=useSelector((state) => state.contacts1.contactData)
   console.log("reduxxxxxxxxxx",arr);
   
