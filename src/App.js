@@ -3,57 +3,59 @@ import Box from '@mui/material/Box';
 import Left from './components/Left'
 import Right from './components/Right';
 import { Grid } from '@mui/material';
-import { blue, red } from '@mui/material/colors';
+import { useSelector } from 'react-redux';
+
 function App() {
-  var time = new Date();
-  time=time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+  let arr=useSelector((state) => state.contacts1.contactData)
+  console.log("reduxxxxxxxxxx",arr);
+  
   const[contacts,setContacts]=useState([
     {
       contactName:"rohan",
       mobileNo:9999999999,
       profile:"./rohan.jpg",
-      messages:[{msg:"hii",time:time}]
+      messages:[{msg:"hii",time:"10:10 AM"}]
     },
     {
       contactName:"shrikant",
       mobileNo:8888888888,
       profile:"./ashish.jpg",
-      messages:[{msg:"hii",time:time}]
+      messages:[{msg:"hii",time:"03:10 PM"}]
     },
     {
       contactName:"Ashish",
       mobileNo:7777777777,
       profile:"./shriknt.jpg",
-      messages:[{msg:"bye",time:time}]
+      messages:[{msg:"bye",time:"10:40 PM"}]
     },
     {
       contactName:"bhargav",
       mobileNo:6666666666,
       profile:"./rainbow.jpg",
-      messages:[{msg:"hii",time:time}]
+      messages:[{msg:"hii",time:"06:11 PM"}]
     },
     {
       contactName:"prasenjit",
       mobileNo:5555555555,
       profile:"./bhargav.jpg",
-      messages:[{msg:"hii",time:time}]
+      messages:[{msg:"hii",time:"08:10 PM"}]
     },
     {
       contactName:"Harshal",
       mobileNo:4444444444,
       profile:"./harshal1.jpg",
-      messages:[{msg:"hii",time:time}]
+      messages:[{msg:"hii",time:"10:50 PM"}]
     },{
       contactName:"hemant",
       mobileNo:3333333333,
       profile:"./bhargav.jpg",
-      messages:[{msg:"hii",time:time}]
+      messages:[{msg:"hii",time:"10:30 PM"}]
     },
     {
       contactName:"om",
       mobileNo:22222222222,
       profile:"./om.jpg",
-      messages:[{msg:"hii",time:time}]
+      messages:[{msg:"hii",time:"09:10 PM"}]
     }
   ])
   

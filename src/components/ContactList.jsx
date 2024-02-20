@@ -50,6 +50,9 @@ const ContactList = (props) => {
 
   function displayList()
   {
+  //   clonedArray.sort(function (a, b) {
+  //     return a.props.messages[(props.messages.length)-1].time.localeCompare(b.props.messages[(props.messages.length)-1].time);
+  // });
     if (searchText !== undefined) {
       clonedArray = clonedArray.filter(user => user.contactName.includes(searchText));
     }

@@ -1,17 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import { Avatar } from '@mui/material';
-import img from "./Images/dp.jpg"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Avatar, Stack, Typography } from '@mui/material';
+import img1 from "./Images/dp.jpg"
+
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
     top: false,
@@ -30,36 +24,28 @@ export default function TemporaryDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 450 }}
+      sx={{ width: 503 ,height:"100vh",display:'flex',flexDirection:'column'}}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+     <Stack sx={{height:"17vh"}} bgcolor={"#006D5B"} direction={'row'} spacing={3} alignItems={"self-end"}>
+      <ArrowBackIcon sx={{marginLeft:"50px"}}/>
+      <Typography marginLeft={"15px"}>Profile</Typography>
+     </Stack>
+     <Stack sx={{height:"35vh"}} alignItems={'center'} bgcolor={"#F0F2F5"}>
+      <img src={img1} height={"180px"} width={"180px"} style={{borderRadius:"100px",marginTop:"25px"}}/>
+     </Stack>
+     <Divider/>
+     <Stack sx={{height:"17vh"}} >
+     <Typography margin={"15px"}>Your name</Typography>
+     <Typography margin={"15px"}>Abhi</Typography>
+     </Stack>
+     <Divider/>
+     <Stack sx={{height:"15vh"}}>
+     <Typography margin={"15px"}>About</Typography>
+     <Typography margin={"15px"}>My only competitor is the person I was yesterday....💯</Typography>
+     </Stack>
     </Box>
   );
 
@@ -67,8 +53,7 @@ export default function TemporaryDrawer() {
     <div>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Avatar onClick={toggleDrawer(anchor, true)} alt="Travis Howard" src={img}  margin={"9px"}/>
+          <Avatar onClick={toggleDrawer(anchor, true)} alt="Travis Howard" src={img1}  margin={"9px"}/>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
