@@ -4,32 +4,28 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import MoodIcon from '@mui/icons-material/Mood';
 import MicIcon from '@mui/icons-material/Mic';
 import SendIcon from '@mui/icons-material/Send';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import onSendMsg from '../ActionCreators/actions';
 
 
 const ChatFooter = () => {
-  let selectContact=useSelector((state)=>state.contacts1.selectedcontact)
-  let contactArr=useSelector((state)=>state.contacts1.contactData)
-    const[sendText,setSendtext]=useState({})
+  
+
+
+  const[sendText,setSendtext]=useState("")
   const[sendBtEnabled,setSendBtEnabled]=useState(false)
   function sendmsg(text){
     setSendBtEnabled(true)
-    let msgObj={}
-    msgObj.msg=text
-    var time = new Date();
-    time=time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-    msgObj.time=time
-    setSendtext(msgObj)
+    setSendtext(text)
     
   }
   const dispatch=useDispatch()
   function onsubmit()
   {
     setSendBtEnabled(false)
-    dispatch(onSendMsg(sendText,selectContact,contactArr))
-    // dispatch(onSendMsg(sendText))
+    dispatch(onSendMsg(sendText))
+    
     setSendtext({msg:"",time:""})
     
   }

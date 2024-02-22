@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Grid, Paper, Stack, Typography } from '@mui/material'
 import chatbg from './whatsapp.jpg'
 import React from 'react'
 import { useSelector } from 'react-redux'

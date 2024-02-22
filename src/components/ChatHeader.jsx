@@ -7,10 +7,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useDispatch, useSelector } from 'react-redux';
 import { onBackButton } from '../Slices/contactsSlice';
 
-const ChatHeader = (props) => {
+const ChatHeader = () => {
   
   let selectedContact=useSelector((state) => state.contacts1.selectedcontact)
   let dispatch=useDispatch()
+  
   return (
     <Box sx={{height:"6vh",display:"flex",flexDirection:"row",padding:"10px"}} bgcolor={"#F0F2F5"} justifyContent={'space-between'} >
     <Stack direction="row" spacing={2} alignItems={"center"}>

@@ -61,9 +61,11 @@ export const contactsSlice = createSlice({
   reducers: {
     updateContactData: (state, action) => {
 
-      state.selectedcontact.messages = action.payload.msgArr
+      let msgArr=state.selectedcontact.messages
+        msgArr.push(action.payload.msgObj)
+      var index = state.contactData.findIndex(contact => contact.mobileNo === state.selectedcontact.mobileNo);
       console.log("upselected", current(state.selectedcontact));
-      state.contactData[action.payload.index].messages = action.payload.msgArr
+      state.contactData[index].messages = msgArr
     },
     selectContact: (state, action) => {
       console.log("ssssss", action.payload);
@@ -76,17 +78,17 @@ export const contactsSlice = createSlice({
       state.selectedcontact = ""
 
     },
-    updataMessages: (state, action) => {
-      let person = state.contactData.find((person) => person.mobileNo === action.payload.selectedContact.mobileNo)
-      if (person) {
-        person.messages.push(action.payload.msgobj)
-        state.selectedcontact = person
-      }
-    },
+    // updataMessages: (state, action) => {
+    //   let person = state.contactData.find((person) => person.mobileNo === action.payload.selectedContact.mobileNo)
+    //   if (person) {
+    //     person.messages.push(action.payload.msgobj)
+    //     state.selectedcontact = person
+    //   }
+    // },
   },
 })
 
-// Action creators are generated for each case reducer function
+
 export const { updateContactData, selectContact, onBackButton, updataMessages } = contactsSlice.actions
 
 export default contactsSlice.reducer

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Box,Typography, Stack,Paper,TextField, IconButton,Menu,MenuItem} from '@mui/material'
+import { Box} from '@mui/material'
 
 
 
@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import ChatHeader from './ChatHeader';
 import ChatFooter from './ChatFooter';
 
-const Right = (props) => {
+const Right = () => {
   
   const selectedContact=useSelector((state)=>state.contacts1.selectedcontact)
  
@@ -23,7 +23,7 @@ const Right = (props) => {
       <>
       <ChatHeader  />
       <DisplayMsg />
-      <ChatFooter onSendMsg={props.onSendMsg}/>
+      <ChatFooter />
 
     
      </>
