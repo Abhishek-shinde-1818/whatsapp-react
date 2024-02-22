@@ -2,27 +2,27 @@ import React, { useState } from 'react'
 
 import { Box,Typography, Stack,Paper,TextField, IconButton,Menu,MenuItem} from '@mui/material'
 
-import MoodIcon from '@mui/icons-material/Mood';
+
 
 import DisplayMsg from './DisplayMsg';
-import MicIcon from '@mui/icons-material/Mic';
-import SendIcon from '@mui/icons-material/Send';
 
+import { useSelector } from 'react-redux';
 import ChatHeader from './ChatHeader';
 import ChatFooter from './ChatFooter';
 
 const Right = (props) => {
   
-  
+  const selectedContact=useSelector((state)=>state.contacts1.selectedcontact)
+ 
   return (
     
     <Box sx={{ border: 1,height:"100vh",display:"flex",flexDirection:"column"}}>
     
     { 
-      props.selectedContact ?
+      selectedContact ?
       <>
-      <ChatHeader selectedContact={props.selectedContact} onBackButton={props.onBackButton}/>
-      <DisplayMsg selectedContact={props.selectedContact}/>
+      <ChatHeader  />
+      <DisplayMsg />
       <ChatFooter onSendMsg={props.onSendMsg}/>
 
     

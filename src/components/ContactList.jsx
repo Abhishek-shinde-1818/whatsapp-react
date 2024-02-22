@@ -7,12 +7,16 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import Right from './Right';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContact } from '../Slices/contactsSlice';
 
 const Person = (props) =>{
-    
-  let color1;
-  if (props.person.mobileNo === props.selectedContact.mobileNo) {
+  let selectedContact=useSelector((state)=>state.contacts1.selectedcontact)
+  
+  let dispatch=useDispatch()
+  let color1="blue";
+  if (props.person.mobileNo === selectedContact.mobileNo) {
     color1 = "#F0F2F5"
   } else {
     color1 = 'white'
@@ -21,9 +25,11 @@ const Person = (props) =>{
   let msg=props.person.messages[lastText].msg
   let msglen=msg.length
   
+  
+  
      return(
      <> 
-      <ListItem alignItems="flex-start" onClick={()=>props.selectContact(props.person)} sx={{backgroundColor:color1,cursor:"pointer"}} >
+      <ListItem alignItems="flex-start" onClick={()=>dispatch(selectContact(props.person))} sx={{backgroundColor:color1,cursor:"pointer"}} >
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src={props.person.profile} sx={{height:"50px",width:"50px"}}/>
         </ListItemAvatar>
@@ -36,6 +42,7 @@ const Person = (props) =>{
          </Stack>
          
          <Typography>{msglen < 35 ? msg : msg.slice(0,35) + "..."}</Typography>
+         
          </ListItemText>
       </ListItem>
       <Divider  variant="inset" component="li"/>
@@ -44,15 +51,16 @@ const Person = (props) =>{
        
      )
 }
-const ContactList = (props) => {
-  let searchText=props.searchText
-  let clonedArray = [...props.contacts]
+const ContactList = () => {
+  
+  let searchText=useSelector((state)=>state.searchText.searchText)
+  let Arr=useSelector((state) => state.contacts1.contactData)
+  
+  let clonedArray = [...Arr]
 
   function displayList()
   {
-  //   clonedArray.sort(function (a, b) {
-  //     return a.props.messages[(props.messages.length)-1].time.localeCompare(b.props.messages[(props.messages.length)-1].time);
-  // });
+ 
     if (searchText !== undefined) {
       clonedArray = clonedArray.filter(user => user.contactName.includes(searchText));
     }
@@ -60,7 +68,7 @@ const ContactList = (props) => {
     let contactArr=[]
      for(let i=0;i<clonedArray.length;i++)
      {
-       contactArr.push(<Person person={clonedArray[i]} selectContact={props.selectContact} selectedContact={props.selectedContact} key={clonedArray[i].mobileNo}/>)
+       contactArr.push(<Person person={clonedArray[i]} key={clonedArray[i].mobileNo}/>)
      }
      return contactArr
   }

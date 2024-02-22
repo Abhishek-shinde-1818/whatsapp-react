@@ -1,6 +1,7 @@
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material'
 import chatbg from './whatsapp.jpg'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 
 const Msg = (props) =>{
@@ -13,8 +14,9 @@ const Msg = (props) =>{
     //  </Paper>
   )
 }
-const DisplayMsg = (props) => {
-    
+const DisplayMsg = () => {
+  const selectedContact=useSelector((state)=>state.contacts1.selectedcontact)
+  console.log("444",selectedContact);
     const styles={
         paperContainer:{
         backgroundImage:`url(${chatbg})`,
@@ -24,12 +26,12 @@ const DisplayMsg = (props) => {
     };
     function fun()
     {
-      let msgArr=props.selectedContact.messages
+      let msgArr=selectedContact.messages
      
       let Arr=[]
       for(let i=0;i<msgArr.length;i++)
       {
-         Arr.push(<Msg msg={props.selectedContact.messages[i]}/>)
+         Arr.push(<Msg msg={selectedContact.messages[i]}/>)
       }
       console.log("ssssssssss",Arr);
       return Arr
