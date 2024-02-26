@@ -14,7 +14,7 @@ const ChatHeader = () => {
   
   return (
     <Box sx={{height:"6vh",display:"flex",flexDirection:"row",padding:"10px"}} bgcolor={"#F0F2F5"} justifyContent={'space-between'} >
-    <Stack direction="row" spacing={2} alignItems={"center"}>
+    <Stack direction="row" spacing={2} alignitems={"center"}>
     
     <ArrowBackIcon sx={{display:{xs:selectedContact ? 'block':'none',sm:'none'}}} onClick={()=>dispatch(onBackButton())}/>
     <Avatar alt="Remy Sharp" src={selectedContact.profile} />

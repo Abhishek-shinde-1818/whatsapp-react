@@ -31,7 +31,7 @@ const DisplayMsg = () => {
       let Arr=[]
       for(let i=0;i<msgArr.length;i++)
       {
-         Arr.push(<Msg msg={selectedContact.messages[i]}/>)
+         Arr.push(<Msg msg={selectedContact.messages[i]} key={i+1}/>)
       }
       console.log("ssssssssss",Arr);
       return Arr

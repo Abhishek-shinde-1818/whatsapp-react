@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
+
 import Left from './components/Left'
 import Right from './components/Right';
 import { Grid } from '@mui/material';
@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 function App() {
 
   let selectedContact=useSelector((state)=>state.contacts1.selectedcontact)
-  
   
   return (
    <Grid container direction={'row'} height={"100%"} >

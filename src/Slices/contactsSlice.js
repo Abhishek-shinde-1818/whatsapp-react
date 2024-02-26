@@ -64,7 +64,7 @@ export const contactsSlice = createSlice({
       let msgArr=state.selectedcontact.messages
         msgArr.push(action.payload.msgObj)
       var index = state.contactData.findIndex(contact => contact.mobileNo === state.selectedcontact.mobileNo);
-      console.log("upselected", current(state.selectedcontact));
+      
       state.contactData[index].messages = msgArr
     },
     selectContact: (state, action) => {

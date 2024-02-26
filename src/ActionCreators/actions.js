@@ -13,8 +13,11 @@ function onSendMsg(textMsg) {
         msgObj.time=time
           
         
-         dispatch(updateContactData({msgObj}))
+        dispatch(updateContactData({msgObj}))
        
+
     };
   }
   export default onSendMsg
+ 
+ 
