@@ -54,4 +54,10 @@ it('time typeeeeeee should be string', () => {
   expect(typeof time).toBe('string')
  
 });
+it('time typeeeeeee1 should be string', () => {
+  let time=moment().format('LT');  
+
+  expect(typeof time).toBe('string')
+ 
+});
   
